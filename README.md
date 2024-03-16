@@ -1,9 +1,10 @@
 # FoodEx
-Food delivery system application for Linux (Ubuntu 22.04) desktop written in C/GTK+
+Food delivery system application for Linux (Ubuntu 22.04) written in C/GTK+
 
 ## Configure
-Set up environment for build running `./scripts/setenv.sh`
-and enter database password `1234`
+Set up environment configuration for build running:
+`./scripts/setenv.sh` - script to set up database
+`source .env.example` - command to set up environment
 
 ## Build
 Build project with `make all` or `make` command

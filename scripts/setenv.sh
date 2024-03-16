@@ -1,62 +1,32 @@
 #!/bin/bash
 
-sudo echo -n "Setting up environment"; sleep 1; echo -n '.';
-sleep 1; echo -n '.'; sleep 1; echo -n '.'; sleep 1; echo '';
-sudo apt update && sudo apt upgrade
+echo "Required packages for development:"
+echo "libgtk-3-0 libgtk-3-dev make gcc pkg-config  mysql-server libmysqlclient-dev"
+echo
 
-apt list --installed | grep -q libgtk-3-0
-if [ $? -ne 0 ]; then
-	sudo apt install libgtk-3-0 libgtk-3-dev
-fi
-
-apt list --installed | grep -q libgtk-3-dev
-if [ $? -ne 0 ]; then
-	sudo apt install libgtk-3-dev
-fi
-
-if [ ! $(which make) ]; then
-	sudo apt install make
-fi
-
-if [ ! $(which gcc) ]; then
-	sudo apt install gcc
-fi
-
-if [ ! $(which pkg-config) ]; then
-	sudo apt install pkg-config
-fi
-
-if [ ! $(which mysql) ]; then
-	sudo apt install mysql-server libmysqlclient-dev
-fi
-
-if [ $(echo $PWD | rev | cut -f1 -d/ | rev) = "scripts" ]; then
+if [[ $PWD =~ "scripts" ]]; then
 	cd ..
 fi
 
-if [ ! -f "./mysql/setDB.sql" -a -f "./mysql/DDL.sql" -a -f "./mysql/fillDB.sql" ]; then
-	echo "Database configuration: SQL files in '../mysql/' were not found"
+if [ ! -f "./mysql/setdb.sql" -a -f "./mysql/ddl.sql" -a -f "./mysql/filldb.sql" ]; then
+	echo "SQL files in 'mysql/' directory were not found"
 	exit 1
 fi
 
-sudo mysql <<< exit 2>/dev/null
-if [ $? -ne 0 ]; then
-	echo -n "Enter MySQL server password for root: "
-	read password
-	mysqladmin -uroot -p"$password" password '' 2>/dev/null
-	if [ $? -ne 0 ];
-	then
-		echo "Database configuration: Wrong password"
-		echo "Database configuration failed"
-		exit 1
-	fi
-fi
+#sudo mysql <<< exit 2>/dev/null
+#if [ $? -ne 0 ]; then
+#	mysqladmin -u$DBUSER -p$DBPASS password '' 2>/dev/null
+#fi
 
-sudo mysql <./mysql/setdb.sql
-mysql -uroot -p1234 Foodex_DB <./mysql/ddl.sql 2>/dev/null
-mysql -uroot -p1234 Foodex_DB <./mysql/filldb.sql 2>/dev/null
+source .env.example
+FILE="./mysql/setdb.sql"
+sed -i "s/username/'$DBUSER'/" $FILE
+sed -i "s/hostname/'$DBHOST'/" $FILE
+sed -i "s/password;/'$DBPASS';/" $FILE
+sed -i "s/database/$DBNAME/" $FILE
 
-echo "Environment is configured"
+mysql -u$DBUSER -p$DBPASS < ./mysql/setdb.sql
+mysql -u$DBUSER -p$DBPASS $DBNAME < ./mysql/ddl.sql
+mysql -u$DBUSER -p$DBPASS $DBNAME < ./mysql/filldb.sql
 
 exit 0
-
