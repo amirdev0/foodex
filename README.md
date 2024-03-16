@@ -1,5 +1,5 @@
 # FoodEx
-Food delivery system application for Linux (Ubuntu 22.04) written in C/GTK+
+Food delivery system application for Linux (Ubuntu 22.04) written in C
 
 ## Configure
 Set up environment configuration for build running:
