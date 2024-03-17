@@ -45,22 +45,19 @@ WFLAGS += -Wextra
 all: clean server client
 	@echo -e '\nProject was built'
 
-server: mkdir
+server:
 	@echo -e '\nBuilding $@'
 	$(CC) $(SERVER_SRC) -o $(BIN_DIR)/$@ $(WFLAGS) $(CFLAGS)
 
-client: mkdir
+client:
 	@echo -e '\nBuilding $@'
 	$(CC) $(CUSTOMER_SRC) -o $(BIN_DIR)/customer $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
 	$(CC) $(RESTAURANT_SRC) -o $(BIN_DIR)/restaurant $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
 	$(CC) $(DASHER_SRC) -o $(BIN_DIR)/dasher $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
 
-mkdir:
-	@echo -e '\nMaking ' $(BIN_DIR)
-	mkdir $(BIN_DIR)
-
 .PHONY: clean
 
 clean:
 	@echo "Deleting binaries"
-	rm -rf -v $(BIN_DIR)
+	rm -rf -v $(BIN_DIR)/*
+	touch $(BIN_DIR)/.gitkeep
