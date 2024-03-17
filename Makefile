@@ -8,13 +8,23 @@ SERVER_SRC += \
 	$(SRC_DIR)/server/handlers.c \
 	$(SRC_DIR)/server/dbconnector.c
 	
-CLIENT_SRC += \
-	$(SRC_DIR)/client/main.c \
-	$(SRC_DIR)/client/data_transfer.c \
-	$(SRC_DIR)/client/account.c \
-	$(SRC_DIR)/client/customer.c \
-	$(SRC_DIR)/client/restaurant.c \
-	$(SRC_DIR)/client/dasher.c
+CUSTOMER_SRC += \
+	$(SRC_DIR)/client/customer/main.c \
+	$(SRC_DIR)/client/customer/data_transfer.c \
+	$(SRC_DIR)/client/customer/account.c \
+	$(SRC_DIR)/client/customer/customer.c
+	
+RESTAURANT_SRC += \
+	$(SRC_DIR)/client/restaurant/main.c \
+	$(SRC_DIR)/client/restaurant/data_transfer.c \
+	$(SRC_DIR)/client/restaurant/account.c \
+	$(SRC_DIR)/client/restaurant/restaurant.c
+
+DASHER_SRC += \
+	$(SRC_DIR)/client/dasher/main.c \
+	$(SRC_DIR)/client/dasher/data_transfer.c \
+	$(SRC_DIR)/client/dasher/account.c \
+	$(SRC_DIR)/client/dasher/dasher.c
 
 # Include folders common to all targets
 INC_FOLDERS += $(SRC_DIR)/common
@@ -41,7 +51,9 @@ server: mkdir
 
 client: mkdir
 	@echo -e '\nBuilding $@'
-	$(CC) $(CLIENT_SRC) -o $(BIN_DIR)/$@ $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
+	$(CC) $(CUSTOMER_SRC) -o $(BIN_DIR)/customer $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
+	$(CC) $(RESTAURANT_SRC) -o $(BIN_DIR)/restaurant $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
+	$(CC) $(DASHER_SRC) -o $(BIN_DIR)/dasher $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
 
 mkdir:
 	@echo -e '\nMaking ' $(BIN_DIR)

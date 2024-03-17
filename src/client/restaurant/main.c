@@ -12,8 +12,6 @@
 #include "foodex_types.h"
 #include "account.h"
 #include "restaurant.h"
-#include "customer.h"
-#include "dasher.h"
 
 int server_sock;
 struct foodex_event_t event;
