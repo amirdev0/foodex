@@ -1,8 +1,8 @@
 START TRANSACTION;
 
-ALTER USER usename@hostname IDENTIFIED WITH caching_sha2_password BY password;
+ALTER USER usename@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';
 
-DROP DATABASE IF EXISTS database;
-CREATE DATABASE database;
+DROP DATABASE IF EXISTS FoodEx;
+CREATE DATABASE FoodEx;
 
 COMMIT;

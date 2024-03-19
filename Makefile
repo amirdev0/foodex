@@ -10,24 +10,26 @@ SERVER_SRC += \
 	
 CUSTOMER_SRC += \
 	$(SRC_DIR)/client/customer/main.c \
-	$(SRC_DIR)/client/customer/data_transfer.c \
-	$(SRC_DIR)/client/customer/account.c \
+	$(SRC_DIR)/common/data_transfer.c \
+	$(SRC_DIR)/client/account.c \
 	$(SRC_DIR)/client/customer/customer.c
 	
 RESTAURANT_SRC += \
 	$(SRC_DIR)/client/restaurant/main.c \
-	$(SRC_DIR)/client/restaurant/data_transfer.c \
-	$(SRC_DIR)/client/restaurant/account.c \
+	$(SRC_DIR)/common/data_transfer.c \
+	$(SRC_DIR)/client/account.c \
 	$(SRC_DIR)/client/restaurant/restaurant.c
 
 DASHER_SRC += \
 	$(SRC_DIR)/client/dasher/main.c \
-	$(SRC_DIR)/client/dasher/data_transfer.c \
-	$(SRC_DIR)/client/dasher/account.c \
+	$(SRC_DIR)/common/data_transfer.c \
+	$(SRC_DIR)/client/account.c \
 	$(SRC_DIR)/client/dasher/dasher.c
 
 # Include folders common to all targets
-INC_FOLDERS += $(SRC_DIR)/common
+INC_FOLDERS += \
+	$(SRC_DIR)/common \
+	$(SRC_DIR)/client
 INC_PARAMS=$(foreach d, $(INC_FOLDERS), -I$d)
 
 # Optimization flags
