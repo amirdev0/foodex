@@ -32,8 +32,8 @@ struct foodex_user_t {
 
 struct foodex_dasher_t {
 	struct foodex_user_t user;
-	struct foodex_shipping_t {		
-		string shipping_type;
+	struct foodex_delivery_t {		
+		string delivery_type;
 	} delivery;
 };
 
@@ -67,12 +67,12 @@ struct foodex_order_t {
 			int quantity;
 		} item[MAXSIZE];
 	} food;
-	struct foodex_delivery_t {
+	struct foodex_shipping_t {
 		int dasher_id;
 		string restaurant_addr;
 		string customer_addr;
-		string delivery_type;
-	} delivery;
+		string shipping_type;
+	} shipping;
 };
 
 struct foodex_event_t {
