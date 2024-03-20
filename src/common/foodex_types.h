@@ -2,6 +2,8 @@
 #define FOODEX_TYPES_H
 
 #define str(x) #x
+#define STRSIZE 63
+#define PATHSIZE 255
 #define MAXSIZE 255
 
 struct foodex_user_t;
@@ -10,7 +12,8 @@ struct foodex_restaurant_t;
 struct foodex_order_t;
 struct foodex_event_t;
 
-typedef char string[MAXSIZE];
+typedef char string[STRSIZE];
+typedef char path[PATHSIZE];
 
 struct foodex_user_t {
 	int id;
@@ -24,7 +27,7 @@ struct foodex_user_t {
 	string name;
 	string email;
 	string address;
-	string image_path;
+	path image;
 };
 
 struct foodex_dasher_t {
@@ -41,7 +44,7 @@ struct foodex_restaurant_t {
 			int id;
 			string name;
 			float price;
-			string image_path;
+			path image
 		} meal[MAXSIZE];
 	} menu;
 };
