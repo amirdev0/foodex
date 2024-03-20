@@ -9,6 +9,15 @@
 extern struct foodex_event_t event;
 extern union foodex_data_u data;
 
+struct foodex_cart_t {
+	struct foodex_item_t {
+		struct foodex_meal_t meal;
+		int quantity;
+		float net_price;
+	};
+	int total_price;
+};
+
 void viewCart(void)
 {
 	//printing the cart

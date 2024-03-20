@@ -9,6 +9,11 @@
 extern struct foodex_event_t event;
 extern union foodex_data_u data;
 
+//CREATE_MEAL,
+//READ_MEAL,
+//UPDATE_MEAL,
+//DELETE_MEAL,
+
 int addMeal(const char *meal_name, const char *price, const char *time, const char *path, int restaurantID)
 {
 	memset(&event, 0, sizeof(event));
