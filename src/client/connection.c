@@ -8,7 +8,7 @@
 
 #include "connection.h"
 
-int open_con(int port, char *ip)
+int con_open(int port, char *ip)
 {
 	int server_sock;
 	struct sockaddr_in addr;
@@ -34,7 +34,7 @@ int open_con(int port, char *ip)
 	return server_sock;
 }
 
-void close_con(int server_sock)
+void con_close(int server_sock)
 {
 	if (close(server_sock) < 0) {
 		perror("[!] Server socket was not closed");

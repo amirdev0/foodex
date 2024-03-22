@@ -13,7 +13,7 @@ struct handler_t* chain_init()
 {
 	struct handler_t *chain = malloc(sizeof(struct handler_t));
 	if (chain == NULL) {
-		fprintf(stderr, "Error in memory allocation.\n");
+		fprintf(stderr, "Error in memory allocation\n");
 		return NULL;
 	}
 	chain->type = -1;

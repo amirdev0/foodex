@@ -6,9 +6,9 @@ struct foodex_delivery_t {
 	string delivery_type;
 };
 
-int getDeliveryList(void);
-int takeDelivery(int dasher_id, int order_id);
-int withdrawDelivery(int order_id);
-int giveDelivery(int order_id);
+int delivery_get_list(void);
+int delivery_start(int dasher_id, int order_id);
+int delivery_stop(int order_id);
+int delivery_finish(int order_id);
 
 #endif //DASHER_H

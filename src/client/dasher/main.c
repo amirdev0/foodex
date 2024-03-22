@@ -7,7 +7,7 @@
 
 int server_sock;
 
-void run_app(void)
+void app_run(void)
 {
 
 }
@@ -17,11 +17,11 @@ int main(int argc, char *argv[])
 	int port = argc > 1 ? atoi(argv[1]) : 8080;
 	char *ip = argc > 2 ? argv[2] : "127.0.0.1";
 	
-	server_sock = open_con(port, ip);
+	server_sock = con_open(port, ip);
 	
-	run_app();
+	app_run();
 	
-	close_con(server_sock);
+	con_close(server_sock);
 	
 	return 0;
 }

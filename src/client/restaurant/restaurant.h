@@ -21,15 +21,16 @@ struct draft_t {
 	} item[MAXSIZE];
 };
 
-struct menu_t getMenuList(int restaurant_id);
-int setMenuList(struct menu_t menu);
+struct menu_t menu_get_list(int restaurant_id);
+int menu_set_list(struct menu_t menu);
 
-int createMeal(struct menu_t *menu, string name, int price, path image);
-int updateMeal(struct menu_t *menu, int meal_id, int price, path image);
-int deleteMeal(struct menu_t *menu, int meal_id);
+int meal_create(struct menu_t *menu, string name, int price, path image);
+int meal_update(struct menu_t *menu, int meal_id, int price, path image);
+int meal_delete(struct menu_t *menu, int meal_id);
 
-struct draft_t getDraftList(int restaurant_id);
-int cookDraft(struct draft_t *draft, int restaurant_id);
-int cookDraft(struct draft_t *draft, int restaurant_id);
+struct draft_t draft_get_list(int restaurant_id);
+int draft_accept(struct draft_t *draft, int restaurant_id);
+int draft_revoke(int order_id);
+int draft_finish(int order_id);
 
 #endif //RESTAURANT_H
