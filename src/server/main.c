@@ -28,7 +28,6 @@ struct thread_args {
 };
 
 struct foodex_event_t event;
-union foodex_data_u data;
 
 MYSQL *con;
 int server_sock;
@@ -40,7 +39,7 @@ void sig_handler(int signum)
 		perror("[!] Server socket was not closed");
 		exit(1);
 	}
-	printf("\b\b[-] Server was stopped.\n");
+	printf("\b\b[-] Server was stopped\n");
 	exit(0);
 }
 
@@ -66,12 +65,12 @@ void* client_handler(void *vargp)
 			return NULL;
 		}
 
-		printf("    From Client #%d was reveived event (%d KB)\n", client_count, bytes_read / 1024);
-		memset(&data, 0, sizeof(data));
-		if (!handleEvent(chain, &event))
-			printf("[?] Failed to handle event\n");
+		printf("[?] From Client #%d was reveived event (%d KB)\n", client_count, bytes_read / 1024);
 		
-		send(client_sock, &data, sizeof(data), 0);
+		if (!handle_event(chain, &event))
+			printf("[x] Failed to handle event\n");
+		
+		send(client_sock, &event, sizeof(event), 0);
 		//sem_post(&mutex);
 	}
 	
@@ -94,7 +93,7 @@ int main(int argc, char * argv[])
 	pthread_t tid[MAXCLIENTS];
 	struct handler_t *chain;
 	
-	chain = init_handlers();
+	chain = chain_init();
 	if (chain == NULL) {
 		fprintf(stderr, "[!] Failed to initialize handlers.\n");
 		exit(1);
@@ -155,8 +154,10 @@ int main(int argc, char * argv[])
 		printf("[-] Client #%d disconnected\n", i + 1);
 	}
 	
-	if (close(server_sock) < 0)
+	if (close(server_sock) < 0) {
+		perror("[!] Server socket was not closed");
 		exit(1);
+	}
 	printf("[-] Server was stopped\n");
 	
 	mysql_close(con);

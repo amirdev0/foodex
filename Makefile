@@ -7,23 +7,22 @@ SERVER_SRC += \
 	$(SRC_DIR)/server/main.c \
 	$(SRC_DIR)/server/handlers.c \
 	$(SRC_DIR)/server/dbconnector.c
-	
+
+CLIENT_SRC += \
+	$(SRC_DIR)/client/connection.c \
+	$(SRC_DIR)/client/transmission.c \
+	$(SRC_DIR)/client/account.c
+
 CUSTOMER_SRC += \
 	$(SRC_DIR)/client/customer/main.c \
-	$(SRC_DIR)/common/data_transfer.c \
-	$(SRC_DIR)/client/account.c \
 	$(SRC_DIR)/client/customer/customer.c
 	
 RESTAURANT_SRC += \
 	$(SRC_DIR)/client/restaurant/main.c \
-	$(SRC_DIR)/common/data_transfer.c \
-	$(SRC_DIR)/client/account.c \
 	$(SRC_DIR)/client/restaurant/restaurant.c
 
 DASHER_SRC += \
 	$(SRC_DIR)/client/dasher/main.c \
-	$(SRC_DIR)/common/data_transfer.c \
-	$(SRC_DIR)/client/account.c \
 	$(SRC_DIR)/client/dasher/dasher.c
 
 # Include folders common to all targets
@@ -53,9 +52,9 @@ server:
 
 client:
 	@echo -e '\nBuilding $@'
-	$(CC) $(CUSTOMER_SRC) -o $(BIN_DIR)/customer $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
-	$(CC) $(RESTAURANT_SRC) -o $(BIN_DIR)/restaurant $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
-	$(CC) $(DASHER_SRC) -o $(BIN_DIR)/dasher $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
+	$(CC) $(CLIENT_SRC) $(CUSTOMER_SRC) -o $(BIN_DIR)/customer $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
+	$(CC) $(CLIENT_SRC) $(RESTAURANT_SRC) -o $(BIN_DIR)/restaurant $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
+	$(CC) $(CLIENT_SRC) $(DASHER_SRC) -o $(BIN_DIR)/dasher $(WFLAGS) -g -export-dynamic -lm $(CFLAGS)
 
 .PHONY: clean
 

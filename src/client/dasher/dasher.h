@@ -1,14 +1,14 @@
 #ifndef DASHER_H
 #define DASHER_H
 
+struct foodex_delivery_t {
+	int order_id;	
+	string delivery_type;
+};
+
 int getDeliveryList(void);
-int chooseDelivery(int dasher_id, int order_id);
-//Selects a specific order delivery from a list of available order deliveries to perform actions on. Returns 1 on success, 0 otherwise.
+int takeDelivery(int dasher_id, int order_id);
+int withdrawDelivery(int order_id);
+int giveDelivery(int order_id);
 
-int withdrawDelivery(int dasher_id, int order_id);
-//Withdraws an order delivery. Returns 1 on success, 0 otherwise.
-
-int finishDelivery(int dasher_id, int order_id);
-//Marks an order delivery as finished. Returns 1 on success, 0 otherwise.
-
-#endif
+#endif //DASHER_H
