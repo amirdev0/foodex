@@ -2,7 +2,8 @@
 
 #include "foodex_types.h"
 #include "connection.h"
-#include "account.h"
+#include "account_api.h"
+#include "dasher_api.h"
 #include "dasher.h"
 
 int server_sock;

@@ -1,5 +1,5 @@
-#include "foodex_types.h"
-#include "transmission.h"
 #include "customer.h"
 
-extern int server_sock;
+int item_add(struct cart_t *cart, int meal_id, int quantity);
+
+int item_remove(struct cart_t *cart, int meal_id, int quantity);

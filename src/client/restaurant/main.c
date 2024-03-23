@@ -2,8 +2,8 @@
 
 #include "foodex_types.h"
 #include "connection.h"
-#include "transmission.h"
-#include "account.h"
+#include "account_api.h"
+#include "restaurant_api.h"
 #include "restaurant.h"
 
 int server_sock;
