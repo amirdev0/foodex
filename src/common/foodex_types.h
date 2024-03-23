@@ -52,18 +52,33 @@ struct foodex_event_t {
 			path user_image;
 		} atomic;
 		union foodex_array_t {
-			struct foodex_meal_t {
-				int id;
-				string name;
-				int price;
-				path image;
-			} meal[MAXSIZE];
+			struct foodex_menu_t {
+				struct foodex_meal_t {
+					int id;
+					string name;
+					int price;
+					path image;
+				} meal[MAXSIZE];
+			} menu;
 			struct foodex_restaurant_t {
 				int id;
 				string name;
 				string address;
 				path image;
 			} restaurant[MAXSIZE];
+			struct foodex_delivery_t {
+				int order_id;
+				string restaurant_address;
+				string customer_address;
+			} delivery[MAXSIZE];
+			struct draft_t {
+				int order_id;
+				struct item_t {
+					int id;
+					string name;
+					int quantity;
+				} item[MAXSIZE];
+			} draft;
 		} array;
 	} data;
 };
