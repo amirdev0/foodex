@@ -3,7 +3,7 @@
 
 #include "foodex_types.h"
 
-struct foodex_delivery_t {
+struct delivery_t {
 	int order_id;	
 	string delivery_type;
 };

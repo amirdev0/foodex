@@ -4,7 +4,7 @@
 #include "foodex_types.h"
 
 struct cart_t {
-	struct foodex_item_t {
+	struct item_t {
 		int meal_id;
 		string name;
 		int quantity;

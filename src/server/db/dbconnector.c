@@ -3,10 +3,10 @@
 #include <mysql.h>
 #include <string.h>
 
+#include "dbtypes.h"
 #include "dbconnector.h"
-#include "foodex_types.h"
 
-string user_type_etos[] = {
+char user_type_etos[][16] = {
 	"Restaurant",
 	"Customer",
 	"Dasher"

@@ -6,7 +6,7 @@ BIN_DIR := ./bin
 SERVER_SRC += \
 	$(SRC_DIR)/server/main.c \
 	$(SRC_DIR)/server/handlers.c \
-	$(SRC_DIR)/server/dbconnector.c
+	$(SRC_DIR)/server/db/dbconnector.c
 
 CLIENT_SRC += \
 	$(SRC_DIR)/client/connection.c \
@@ -30,8 +30,10 @@ DASHER_SRC += \
 
 # Include folders common to all targets
 INC_FOLDERS += \
-	$(SRC_DIR)/common \
-	$(SRC_DIR)/client
+	$(SRC_DIR)/ \
+	$(SRC_DIR)/client \
+	$(SRC_DIR)/server \
+	$(SRC_DIR)/server/db
 INC_PARAMS=$(foreach d, $(INC_FOLDERS), -I$d)
 
 # Optimization flags

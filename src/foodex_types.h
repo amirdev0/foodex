@@ -2,7 +2,7 @@
 #define FOODEX_TYPES_H
 
 #define STRSIZE 64
-#define MAXSIZE 256
+#define MAXSIZE 255
 
 typedef char string[STRSIZE];
 typedef char path[MAXSIZE];
@@ -16,7 +16,7 @@ enum foodex_event_type_e {
 	GET_REST_LIST,
 	GET_REST_INFO,
 	SET_REST_INFO,
-	GET_ORDER_LIST,	
+	GET_ORDER_LIST,
 	GET_ORDER_INFO,
 	SET_ORDER_INFO,
 };
@@ -38,6 +38,7 @@ struct foodex_event_t {
 			int restaurant_id;
 			int meal_id;
 			int quantity;
+			int price;
 			int order_status;
 			string phone;
 			string password;
@@ -71,9 +72,9 @@ struct foodex_event_t {
 				string restaurant_address;
 				string customer_address;
 			} delivery[MAXSIZE];
-			struct draft_t {
+			struct foodex_draft_t {
 				int order_id;
-				struct item_t {
+				struct foodex_item_t {
 					int id;
 					string name;
 					int quantity;

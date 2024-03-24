@@ -1,22 +1,28 @@
+#ifndef TYPES_H
+#define TYPES_H
+
+#define MAXSIZE 255
+#define STRSIZE 64
+
 struct user_t {
 	int id;
-	string phone;
-	string password;
+	char phone[STRSIZE];
+	char password[STRSIZE];
 	enum user_type_e {
 		Customer,
 		Dasher,
 		Restaurant
 	} type;
-	string name;
-	string email;
-	string address;
-	path image;
+	char name[STRSIZE];
+	char email[STRSIZE];
+	char address[STRSIZE];
+	char image[MAXSIZE];
 };
 
 struct dasher_t {
 	struct user_t user;
 	struct delivery_t {		
-		string delivery_type;
+		char delivery_type[STRSIZE];
 	} delivery;
 };
 
@@ -26,9 +32,9 @@ struct restaurant_t {
 		int meal_count;
 		struct meal_t {
 			int id;
-			string name;
+			char name[STRSIZE];
 			int price;
-			path image
+			char image[MAXSIZE];
 		} meal[MAXSIZE];
 	} menu;
 };
@@ -36,8 +42,8 @@ struct restaurant_t {
 struct order_t {
 	int id;
 	int customer_id;
-	string opened_time;
-	string closed_time;
+	char opened_time[STRSIZE];
+	char closed_time[STRSIZE];
 	enum status_e {
 		Placed,
 		Preparing,
@@ -54,8 +60,10 @@ struct order_t {
 	} food;
 	struct shipping_t {
 		int dasher_id;
-		string customer_address;
-		string restaurant_address;
-		string shipping_type;
+		char customer_address[STRSIZE];
+		char restaurant_address[STRSIZE];
+		char shipping_type[STRSIZE];
 	} shipping;
 };
+
+#endif //TYPES_H

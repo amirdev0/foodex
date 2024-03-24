@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "foodex_types.h"
+#include "dbtypes.h"
 #include "handlers.h"
 #include "dbconnector.h"
 

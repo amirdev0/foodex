@@ -1,8 +1,6 @@
 #ifndef HANDLERS_H
 #define HANDLERS_H
 
-#include "foodex_types.h"
-
 struct handler_t {
 	enum foodex_event_type_e type;
 	int (*handler)(struct foodex_event_t *);

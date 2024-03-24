@@ -6,7 +6,7 @@
 #include <pthread.h>    //pthread_t, pthread_create(), pthread_join()
 #include <semaphore.h>  //sem_t, sem_init(), sem_wait(), sem_post(), sem_destroy()
 #include <errno.h>      //perror()
-#include <stdbool.h>
+#include <stdbool.h>	//bool
 #include <mysql.h>		//MYSQL
 
 //inet_addr(), socket(), connect()
