@@ -34,8 +34,8 @@ Running server and client with no arguments on same machine by:
 
 Running server and client on different machines by:
 `./bin/server 8080 $(hostname -I)` and `./bin/client 8080 <SERVER_IPv4>`
-- `hostname -I` - command reveals server IPv4 address
-- `<SERVER_IPv4>` - server address (printed as server runs)
+- `hostname -I` - command reveals self IPv4 address
+- `<SERVER_IPv4>` - is server address which is printed as server runs
 
 ##### Test
 Test application using credentials:

@@ -17,11 +17,4 @@ db_init(
 	void
 );
 
-char* db_read_password(char *phone);
-void db_create_user(struct user_t);
-struct user_t db_read_user(char *phone);
-void db_create_menu_list(struct restaurant_t);
-void db_create_order(int cust_id);
-
-
 #endif //DBCONNECTOR_H

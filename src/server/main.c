@@ -65,9 +65,9 @@ void* client_handler(void *vargp)
 			return NULL;
 		}
 
-		printf("[?] From client #%d was reveived event (%d KB)\n", client_count, bytes_read / 1024);
+		printf("[?] From Client #%d was reveived event (%d KB)\n", client_count, bytes_read / 1024);
 		
-		if (!event_handle(chain, &event))
+		if (!handle_event(chain, &event))
 			printf("[x] Failed to handle event\n");
 		
 		send(client_sock, &event, sizeof(event), 0);
