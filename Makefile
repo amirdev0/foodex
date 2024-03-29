@@ -4,8 +4,8 @@ BIN_DIR := ./bin
 
 # Source files
 SERVER_SRC += \
-	$(SRC_DIR)/server/main.c \
-	$(SRC_DIR)/server/handlers.c \
+	$(SRC_DIR)/server/service/main.c \
+	$(SRC_DIR)/server/service/handlers.c \
 	$(SRC_DIR)/server/db/dbconnector.c
 
 CLIENT_SRC += \
