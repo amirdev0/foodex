@@ -67,7 +67,7 @@ client:
 
 clean:
 	@echo "Deleting binaries"
-	rm -rf -v $(BIN_DIR)
+	rm -rf -v $(BIN_DIR)/*
 
 mkdir:
 	@echo "Making ./bin directory"
