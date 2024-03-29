@@ -6,6 +6,7 @@ BIN_DIR := ./bin
 SERVER_SRC += \
 	$(SRC_DIR)/server/service/main.c \
 	$(SRC_DIR)/server/service/handlers.c \
+	$(SRC_DIR)/server/service/marshalling.c \
 	$(SRC_DIR)/server/db/dbconnector.c
 
 CLIENT_SRC += \
