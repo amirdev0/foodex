@@ -20,25 +20,25 @@ struct handler_t* chain_init()
 	chain->type = -1;
 	chain->next = NULL;
 	
-	//add_handler(chain, AUTHENTICATION, authenticate);
+	handler_add(chain, AUTHENTICATION, authenticate
 	
 	return chain;
 }
 
-void add_handler(struct handler_t *chain, enum foodex_event_type_e type, int (*handler)(struct foodex_event_t *))
+void handler_add(struct handler_t *chain, enum foodex_event_type_e type, int (*handler)(struct foodex_event_t *))
 {
 	struct handler_t *cur_handler = chain;
 	while (cur_handler->next)
 		cur_handler = cur_handler->next;
 		
-	struct handler_t *new_handler = (struct handler_t *)malloc(sizeof(struct handler_t));
+	struct handler_t *new_handler = malloc(sizeof(struct handler_t));
 	new_handler->type = type;
 	new_handler->handler = handler;
 	new_handler->next = NULL;
 	cur_handler->next = new_handler;
 }
 
-int handle_event(struct handler_t *chain, struct foodex_event_t *event)
+int event_handle(struct foodex_event_t *event, struct handler_t *chain)
 {	
 	struct handler_t *cur_handler = chain;
 	while (cur_handler) {

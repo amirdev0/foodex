@@ -7,18 +7,24 @@
 typedef char string[STRSIZE];
 typedef char path[MAXSIZE];
 
+enum user_type_e {
+	CUST,
+	DASH,
+	REST
+};
+	
 enum foodex_event_type_e {
 	AUTHENTICATION,
-	GET_USER_INFO,
-	SET_USER_INFO,
-	GET_DASH_INFO,
-	SET_DASH_INFO,
-	GET_REST_LIST,
-	GET_REST_INFO,
-	SET_REST_INFO,
-	GET_ORDER_LIST,
-	GET_ORDER_INFO,
-	SET_ORDER_INFO,
+	USER_GET_INFO,
+	USER_SET_INFO,
+	DASH_GET_INFO,
+	DASH_SET_INFO,
+	REST_GET_INFO,
+	REST_SET_INFO,
+	REST_GET_LIST,
+	ORDER_GET_INFO,
+	ORDER_SET_INFO,
+	ORDER_GET_LIST,
 };
 
 enum foodex_event_result_e {
@@ -84,4 +90,4 @@ struct foodex_event_t {
 	} data;
 };
 
-#endif // FOODEX_TYPES_H
+#endif //FOODEX_TYPES_H

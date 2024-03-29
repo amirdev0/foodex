@@ -6,12 +6,6 @@
 #include "dbtypes.h"
 #include "dbconnector.h"
 
-char user_type_etos[][16] = {
-	"Restaurant",
-	"Customer",
-	"Dasher"
-};
-
 MYSQL* db_init(void)
 {
 	MYSQL *con = mysql_init(NULL);
