@@ -5,6 +5,7 @@ BIN_DIR := ./bin
 # Source files
 SERVER_SRC += \
 	$(SRC_DIR)/server/service/main.c \
+	$(SRC_DIR)/server/service/authentication.c \
 	$(SRC_DIR)/server/service/handlers.c \
 	$(SRC_DIR)/server/service/marshalling.c \
 	$(SRC_DIR)/server/db/dbconnector.c
