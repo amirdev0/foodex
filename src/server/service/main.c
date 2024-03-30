@@ -1,13 +1,14 @@
-#include <stdio.h>      //printf()
-#include <stdlib.h>     //exit()
-#include <string.h>     //memset()
-#include <unistd.h>     //close()
-#include <signal.h>     //SIGINT, signal()
-#include <pthread.h>    //pthread_t, pthread_create(), pthread_join()
-#include <semaphore.h>  //sem_t, sem_init(), sem_wait(), sem_post(), sem_destroy()
-#include <errno.h>      //perror()
-#include <stdbool.h>	//bool
-#include <mysql.h>		//MYSQL
+#include <stdio.h>      	//printf()
+#include <stdlib.h>     	//exit()
+#include <string.h>     	//memset()
+#include <unistd.h>     	//close()
+#include <signal.h>     	//SIGINT, signal()
+#include <pthread.h>    	//pthread_t, pthread_create(), pthread_join()
+#include <semaphore.h>  	//sem_t, sem_init(), sem_wait(), sem_post(), sem_destroy()
+#include <errno.h>      	//perror()
+#include <stdbool.h>		//bool
+#include <stdnoreturn.h>	//noreturn
+#include <mysql.h>			//MYSQL
 
 //inet_addr(), socket(), connect()
 //struct sockaddr_in, AF_INET, SOCK_STREAM
@@ -33,7 +34,7 @@ MYSQL *con;
 int server_sock;
 sem_t mutex;
 
-void sig_handler(int signum)
+noreturn void sig_handler(int signum)
 {
 	if (close(server_sock) < 0)	{
 		perror("[!] Server socket was not closed");
