@@ -13,7 +13,7 @@ SERVER_SRC += \
 CLIENT_SRC += \
 	$(SRC_DIR)/client/connection.c \
 	$(SRC_DIR)/client/transmission.c \
-	$(SRC_DIR)/client/account_api.c
+	$(SRC_DIR)/client/user_api.c
 
 CUSTOMER_SRC += \
 	$(SRC_DIR)/client/customer/main.c \
@@ -55,7 +55,7 @@ all: clean mkdir server client
 
 server:
 	@echo -e '\nBuilding $@'
-	$(CC) $(SERVER_SRC) -o $(BIN_DIR)/$@ $(WFLAGS) $(CFLAGS)
+	$(CC) $(SERVER_SRC) -o $(BIN_DIR)/service $(WFLAGS) $(CFLAGS)
 
 client: 
 	@echo -e '\nBuilding $@'

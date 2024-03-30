@@ -1,5 +1,5 @@
-#ifndef ACCOUNT_API_H
-#define ACCOUNT_API_H
+#ifndef USER_API_H
+#define USER_API_H
 
 struct user_t {
 	int id;
@@ -20,4 +20,4 @@ int user_auth(string phone, string password);
 struct user_t user_get_info(int user_id);
 int user_set_info(struct user_t user);
 
-#endif //ACCOUNT_API_H
+#endif //USER_API_H

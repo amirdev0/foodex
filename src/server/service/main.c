@@ -79,10 +79,6 @@ void* client_handler(void *vargp)
 
 int main(int argc, char * argv[])
 {
-	sem_init(&mutex, 0, 1);
-	signal(SIGINT, sig_handler);
-	con = db_init();
-
 	int port = argc > 1 ? atoi(argv[1]) : 8080;
 	char *ip = argc > 2 ? argv[2] : "127.0.0.1";
 
@@ -93,11 +89,10 @@ int main(int argc, char * argv[])
 	pthread_t tid[MAXCLIENTS];
 	struct handler_t *chain;
 	
+	signal(SIGINT, sig_handler);
+	sem_init(&mutex, 0, 1);
+	con = db_init();
 	chain = chain_init();
-	if (chain == NULL) {
-		fprintf(stderr, "[!] Failed to initialize handlers.\n");
-		exit(1);
-	}
  	
 	server_sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_sock < 0) {
@@ -106,15 +101,16 @@ int main(int argc, char * argv[])
 	}
 	printf("[+] TCP socket for server was created\n");
  
+ 	setsockopt(server_sock, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, 0, 0);
+ 	
 	memset(&server_addr, 0, sizeof server_addr);
 	server_addr.sin_family = AF_INET;
-	server_addr.sin_port = port;
+	server_addr.sin_port = htons(port);
 	if (inet_aton(ip, &server_addr.sin_addr) == 0) {
 		fprintf(stderr, "[!] Invalid IPv4 address\n");
 		exit(1);
 	}
-	printf("[+] Asigned IPv4 address: %s\n", ip);
-	setsockopt(server_sock, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, 0, 0);
+	printf("[+] Assigned IPv4 address: %s\n", ip);
  
 	if (bind(server_sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
 		perror("[!] Server can't bind to port");

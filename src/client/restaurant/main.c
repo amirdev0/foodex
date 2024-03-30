@@ -2,7 +2,7 @@
 
 #include "foodex_types.h"
 #include "connection.h"
-#include "account_api.h"
+#include "user_api.h"
 #include "restaurant_api.h"
 #include "restaurant.h"
 
