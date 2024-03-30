@@ -156,6 +156,7 @@ int main(int argc, char * argv[])
 	}
 	printf("[-] Server was stopped\n");
 	
+	chain_free(chain);
 	mysql_close(con);
 	sem_destroy(&mutex);
 

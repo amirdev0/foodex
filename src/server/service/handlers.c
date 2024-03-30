@@ -19,6 +19,15 @@ struct handler_t* chain_init()
 	return &chain;
 }
 
+void chain_free(struct handler_t *chain)
+{
+	if (chain->next)
+		chain_free(chain->next);
+	
+	if (chain->type != -1)
+		free(chain);
+}
+
 void add_handler(struct handler_t *chain, enum foodex_event_type_e type, int (*handler)(struct foodex_event_t *))
 {
 	struct handler_t *cur_handler = chain;
