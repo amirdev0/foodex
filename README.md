@@ -1,12 +1,15 @@
 # FoodEx
-Food delivery system application for Linux (Ubuntu 22.04) written in C from scratch.
+"Food Express" is full form of FoodEx.
+FoodEx - is food delivery system application programmed for Linux (Ubuntu 22.04) in C from scratch.
 
 ## Description
-3-layer (2-tier) application implements:
+Application implements:
+- 3 logical layers and 2 physical tiers 
 - Client-server architecture
 - TCP protocol for networking
+- Multithreading concept
 - Standard C library only
-- Chain Of Responsibility design pattern 
+- Chain of Responsibility design pattern 
 - MySQL as primary database
 
 # How to ...?
