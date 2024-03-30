@@ -30,7 +30,7 @@ enum foodex_event_result_e {
 struct foodex_event_t {
 	enum foodex_event_type_e type;
 	enum foodex_event_result_e result;
-	union foodex_data_u {
+	struct foodex_data_t {
 		struct foodex_atomic_t {
 			int order_id;
 			int customer_id;
@@ -67,6 +67,12 @@ struct foodex_event_t {
 				string address;
 				path image;
 			} restaurant[MAXSIZE];
+			struct foodex_order_t {
+				struct foodex_unit_t {
+					int meal_id;
+					int quantity;
+				} unit[MAXSIZE];
+			} order;
 			struct foodex_delivery_t {
 				int order_id;
 				string restaurant_address;

@@ -3,10 +3,16 @@
 
 struct cart_t;
 
-int rest_get_list(void);
-int menu_get_list(int restaurant_id);
+struct rest_list_t;
 
-int order_create(struct cart_t cart, int customer_id, int restaurant_id);
+struct menu_list_t;
+
+struct rest_list_t rest_get_list(void);
+
+struct menu_list_t menu_get_list(int rest_id);
+
+int order_create(struct cart_t cart, int cust_id, int rest_id);
+
 int order_cancel(int order_id);
 
 #endif //CUSTOMER_API_H
