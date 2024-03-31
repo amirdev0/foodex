@@ -20,6 +20,11 @@
 #include "dbconnector.h"
 #include "handlers.h"
 
+#define DB_HOST "localhost"
+#define DB_USER "root"
+#define DB_PASS "password"
+#define DB_NAME "FoodEx"
+
 #define MAXCLIENTS 10
 
 struct thread_args {
@@ -68,8 +73,8 @@ void* client_handler(void *vargp)
 
 		printf("[?] From Client #%d was received event (%d KB)\n", client_count, bytes_read / 1024);
 		
-		if (!handle_event(chain, &event))
-			printf("[x] Failed to handle event\n");
+		if (handle_event(chain, &event) < 0)
+			printf("[?] Failed to handle event\n");
 		
 		send(client_sock, &event, sizeof(event), 0);
 		//sem_post(&mutex);
@@ -92,8 +97,20 @@ int main(int argc, char * argv[])
 	
 	signal(SIGINT, sig_handler);
 	sem_init(&mutex, 0, 1);
-	con = db_init();
 	chain = chain_init();
+	
+	con = mysql_init(NULL);
+	if (con == NULL) {
+		fprintf(stderr, "%s\n", mysql_error(con));
+		exit(1);
+  	}
+  	
+	if (mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_NAME, 0, NULL, 0) == NULL) {
+		fprintf(stderr, "%s\n", mysql_error(con));
+		mysql_close(con);
+		exit(1);
+	}
+  	printf("[+] Connected to database\n");
  	
 	server_sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_sock < 0) {

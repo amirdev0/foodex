@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "foodex_types.h"
 #include "connection.h"
@@ -10,7 +11,23 @@ int server_sock;
 
 void app_run(void)
 {
-
+	int id;
+	char phone[STRSIZE];
+	char password[STRSIZE];
+	
+	while (true) {
+		printf("Enter phone: ");
+		scanf("%255s", phone);
+		printf("Enter password: ");
+		scanf("%255s", password);
+	
+		id = user_auth(phone, password);
+		if (id > -1)
+			break;
+		
+		puts("Authentication failed!");
+	}
+	puts("Authentication succeed!");
 }
 
 int main(int argc, char *argv[])
