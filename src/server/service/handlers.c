@@ -81,7 +81,7 @@ int set_user_info(struct foodex_event_t *event)
 	strncpy(user.email, event->data.atomic.user_email, STRSIZE);
 	strncpy(user.address, event->data.atomic.user_address, STRSIZE);
 	strncpy(user.image, event->data.atomic.user_image, MAXSIZE);
-	db_create_user(user);
+	db_create_user(con, user);
 	
 	event->result = SUCCESS;
 	

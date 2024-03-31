@@ -51,6 +51,7 @@ struct rest_list_t rest_get_list(void)
 		strncpy(rest_list.rest[i].address, event.data.array.restaurant[i].address, STRSIZE);
 		strncpy(rest_list.rest[i].image, event.data.array.restaurant[i].image, MAXSIZE);
 	}
+	
 	return rest_list;
 }
 

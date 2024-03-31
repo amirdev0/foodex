@@ -3,6 +3,8 @@
 
 #include <mysql.h>
 
+#include "dbtypes.h"
+
 #define DB_HOST "localhost"
 #define DB_USER "root"
 #define DB_PASS "password"
@@ -10,8 +12,8 @@
 
 char* db_read_password(MYSQL *con, char password[], char phone[]);
 
-//void db_create_user(struct user_t);
-//struct user_t db_read_user(char *phone);
+void db_create_user(MYSQL *con, struct user_t);
+//struct user_t db_read_user(char phone[]);
 //void db_update_user(struct user_t);
 
 //void db_create_menu_list(struct restaurant_t);

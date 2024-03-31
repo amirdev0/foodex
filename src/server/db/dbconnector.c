@@ -30,3 +30,14 @@ char* db_read_password(MYSQL *con, char password[], char phone[])
 	
 	return password;
 }
+
+void db_create_user(MYSQL *con, struct user_t user)
+{
+	char query[800] = { 0 };
+	sprintf(query, "INSERT INTO user VALUES(NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", user.name, user.phone, user.email, user.password, user.address, "", "Tashkent", user.image, "");
+	if (mysql_query(con, query)) {
+		fprintf(stderr, "%s\n", mysql_error(con));
+		mysql_close(con);
+		exit(1);
+	}
+}
