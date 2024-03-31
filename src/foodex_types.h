@@ -81,7 +81,7 @@ struct foodex_event_t {
 			struct foodex_draft_t {
 				int order_id;
 				struct foodex_item_t {
-					int id;
+					int meal_id;
 					string name;
 					int quantity;
 				} item[MAXSIZE];
