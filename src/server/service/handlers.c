@@ -14,7 +14,7 @@ struct handler_t* chain_init()
 {
 	static struct handler_t chain = { -1, NULL, NULL };
 	
-	//add_handler(chain, AUTHENTICATION, authenticate);
+	add_handler(&chain, AUTHENTICATION, authenticate);
 	
 	return &chain;
 }
@@ -51,6 +51,24 @@ int handle_event(struct handler_t *chain, struct foodex_event_t *event)
 
 		cur_handler = cur_handler->next;
 	}
+	
+	return 0;
+}
+
+int authenticate(struct foodex_event_t *event)
+{	
+	printf("[?] Handling authentiation of phone: %s\n", event->data.atomic.phone);
+	
+	string password;
+	db_read_password(con, password, event->data.atomic.phone);
+	
+	if (strcmp(password, event->data.atomic.password)) {
+		event->result = FAIL;
+		return -1;
+	}
+	
+	strncpy(event->data.atomic.password, password, STRSIZE);
+	event->result = SUCCESS;
 	
 	return 0;
 }
