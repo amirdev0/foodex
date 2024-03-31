@@ -9,6 +9,8 @@ struct handler_t {
 
 struct handler_t* chain_init(void);
 
+void chain_free(struct handler_t *chain);
+
 void add_handler(struct handler_t *chain, enum foodex_event_type_e, int (*handler)(struct foodex_event_t *));
 
 int handle_event(struct handler_t *, struct foodex_event_t *);
