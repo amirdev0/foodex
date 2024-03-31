@@ -44,6 +44,7 @@ struct foodex_event_t {
 			string password;
 			string user_name;
 			string user_email;
+			string user_address;
 			string customer_address;
 			string dasher_address;
 			string restaurant_address;

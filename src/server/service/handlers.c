@@ -15,6 +15,7 @@ struct handler_t* chain_init()
 	static struct handler_t chain = { -1, NULL, NULL };
 	
 	add_handler(&chain, AUTHENTICATION, authenticate);
+	add_handler(&chain, SET_USER_INFO, set_user_info);
 	
 	return &chain;
 }
@@ -68,6 +69,20 @@ int authenticate(struct foodex_event_t *event)
 	}
 	
 	strncpy(event->data.atomic.password, password, STRSIZE);
+	event->result = SUCCESS;
+	
+	return 0;
+}
+
+int set_user_info(struct foodex_event_t *event)
+{
+	struct user_t user;
+	strncpy(user.name, event->data.atomic.user_name, STRSIZE);
+	strncpy(user.email, event->data.atomic.user_email, STRSIZE);
+	strncpy(user.address, event->data.atomic.user_address, STRSIZE);
+	strncpy(user.image, event->data.atomic.user_image, MAXSIZE);
+	db_create_user(user);
+	
 	event->result = SUCCESS;
 	
 	return 0;
