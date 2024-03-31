@@ -42,4 +42,4 @@ Running server and client on different machines by:
 
 ##### Test
 Test application using credentials:
-"+998 99 000 00 01" for phone number and "password" for password
+"990000001" for phone number and "password" for password
