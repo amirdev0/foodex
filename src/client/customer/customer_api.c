@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "foodex_types.h"
 #include "transmission.h"
 #include "customer_api.h"
@@ -96,6 +98,7 @@ int order_cancel(int order_id)
 		event.data.array.order.unit[i].meal_id = 0;
 		event.data.array.order.unit[i].quantity = 0;
 	}
+	event.data.atomic.order_id = order_id;
 	event.data.atomic.customer_id = 0;
 	event.data.atomic.restaurant_id = 0;
 	event = transmit(event, server_sock);

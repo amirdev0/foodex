@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "foodex_types.h"
 #include "transmission.h"
 #include "user_api.h"

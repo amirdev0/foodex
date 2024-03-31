@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "customer.h"
 
 struct cart_t {

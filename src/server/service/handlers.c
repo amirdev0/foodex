@@ -24,7 +24,7 @@ void chain_free(struct handler_t *chain)
 	if (chain->next)
 		chain_free(chain->next);
 	
-	if (chain->type != -1)
+	if (chain->type != (enum foodex_event_type_e)-1)
 		free(chain);
 }
 

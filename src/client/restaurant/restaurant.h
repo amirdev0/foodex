@@ -8,7 +8,7 @@ struct menu_t {
 		int id;
 		string name;
 		int price;
-		path image
+		path image;
 	} meal[MAXSIZE];
 };
 

@@ -25,7 +25,7 @@
 #define DB_PASS "password"
 #define DB_NAME "FoodEx"
 
-#define MAXCLIENTS 10
+#define MAXCLIENTS 100
 
 struct thread_args {
 	int client_count;
@@ -39,13 +39,14 @@ MYSQL *con;
 int server_sock;
 sem_t mutex;
 
-noreturn void sig_handler(int signum)
+noreturn void sig_handler()
 {
 	if (close(server_sock) < 0)	{
 		perror("[!] Server socket was not closed");
 		exit(1);
 	}
 	printf("\b\b[-] Server was stopped\n");
+	
 	exit(0);
 }
 
