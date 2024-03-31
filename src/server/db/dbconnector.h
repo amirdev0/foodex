@@ -6,18 +6,9 @@
 #define DB_HOST "localhost"
 #define DB_USER "root"
 #define DB_PASS "password"
-#define DB_DATABASE "FoodEx"
+#define DB_NAME "FoodEx"
 
-/*
-* @desc Function to initialize database connection
-* @return A pointer to MYSQL connection
-*/
-MYSQL*
-db_init(
-	void
-);
-
-char* db_read_password(char *phone);
+char* db_read_password(MYSQL *con, char password[], char phone[]);
 
 void db_create_user(struct user_t);
 struct user_t db_read_user(char *phone);

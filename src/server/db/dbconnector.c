@@ -1,32 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <mysql.h>
 #include <string.h>
+#include <mysql.h>
 
 #include "dbtypes.h"
 #include "dbconnector.h"
 
-char user_type_etos[][16] = {
-	"Restaurant",
-	"Customer",
-	"Dasher"
-};
-
-MYSQL* db_init(void)
+char* db_read_password(MYSQL *con, char password[], char phone[])
 {
-	MYSQL *con = mysql_init(NULL);
-	if (con == NULL) {
-		fprintf(stderr, "%s\n", mysql_error(con));
-		exit(1);
-  	}
-	
-	if (mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_DATABASE, 0, NULL, 0) == NULL) {
+	char query[200] = { 0 };
+	sprintf(query, "SELECT password FROM user WHERE phone_number='%s'", phone);
+	if (mysql_query(con, query)) {
 		fprintf(stderr, "%s\n", mysql_error(con));
 		mysql_close(con);
 		exit(1);
 	}
-    
-	printf("Connected to database\n");
-
-	return con;
+	
+	MYSQL_RES *res = mysql_store_result(con);
+	if (res == NULL) {
+		fprintf(stderr, "%s\n", mysql_error(con));
+		mysql_close(con);
+		exit(1);
+	}
+	
+	MYSQL_ROW row = mysql_fetch_row(res);
+	strcpy(password, row[0] ? row[0] : "");
+	
+	mysql_free_result(res);
+	
+	return password;
 }
